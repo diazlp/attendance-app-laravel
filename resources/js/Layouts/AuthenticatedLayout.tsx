@@ -22,8 +22,8 @@ export default function Authenticated({
         },
         {
             name: 'Users',
-            href: route('dashboard'),
-            current: route().current('dashboard')
+            href: route('users'),
+            current: route().current('users')
         },
         {
             name: 'Attendance',
