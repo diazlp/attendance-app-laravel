@@ -1,11 +1,15 @@
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import Pagination from '@/Components/Pagination';
 
 type UserIndexProps = {
-  users: {id: number, name: string, email: string}[]
+  users: {
+    data: {id: number, name: string, email: string}[],
+    links: {url: string, label: string, active: boolean}[]
+  }
 }
 
-export default function UserIndex({ users }: UserIndexProps) {
+export default function UserIndex({ users }: UserIndexProps) {  
     return (
         <AuthenticatedLayout
             header={
@@ -30,7 +34,7 @@ export default function UserIndex({ users }: UserIndexProps) {
                               </tr>
                             </thead>
                             <tbody>
-                              {users.map((user, i) => (
+                              {users.data.map((user, i) => (
                                 <tr key={i} className='border-b'>
                                   <td className='px-6 py-4 whitespace-nowrap'>
                                       {user.id}
@@ -48,6 +52,9 @@ export default function UserIndex({ users }: UserIndexProps) {
                               ))}
                             </tbody>
                            </table>
+                           <Pagination 
+                            links={users.links}
+                           />
                         </div>
                     </div>
                 </div>
